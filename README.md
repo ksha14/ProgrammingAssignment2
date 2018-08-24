@@ -12,7 +12,7 @@ Programming Assignment you will take advantage of the scoping rules of
 the R language and how they can be manipulated to preserve state inside
 of an R object.
 
-### Caching the Mean of a Vector
+### Caching the Inverse of a Matrix
 
 In this example we introduce the `<<-` operator which can be used to
 assign a value to an object in an environment that is different from the
@@ -27,17 +27,28 @@ The first function, `makeCacheMatrix` creates a special "matrix" object that wil
 4.  get the value of the inverse
 
 
-makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
-    set <- function(y){
+makeCacheMatrix <- function(x = matrix()) 
+{
+  
+	inv <- NULL
+    
+	set <- function(y){
+
         x <<- y
-        inv <<- NULL
-        }
-        get <-function() x
-        setinverse <- function(inverse) inv <<- inverse 
+        
+	inv <<- NULL
+        
+	}
+        
+	get <-function() x
+
+        setinverse <- function(inverse) inv <<- inverse
+ 
         getinverse <- function() inv
-        list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
-    }
+        
+	list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
+    
+}
         
 
 CacheSolve: This function computes the inverse of the special "matrix" returned by makeCacheMatrix above. If the inverse has already been calculated (and the matrix has not changed), then the cachesolve should retrieve the inverse from the cache.
